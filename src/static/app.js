@@ -22,7 +22,13 @@ document.addEventListener("DOMContentLoaded", () => {
   async function fetchActivities() {
     try {
       const response = await fetch("/activities", { cache: "no-store" });
-      const activities = await response.json();
+      const payload = await response.json();
+
+      if (!response.ok) {
+        throw new Error(payload.detail || `Failed to load activities (${response.status})`);
+      }
+
+      const activities = payload;
 
       // Clear loading message
       activitiesList.innerHTML = "";
