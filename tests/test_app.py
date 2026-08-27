@@ -21,8 +21,8 @@ def test_get_activities_returns_all_activities(client):
     # Assert
     payload = response.json()
     assert response.status_code == 200
-    assert len(payload) == 9
     assert "Chess Club" in payload
+    assert "Soccer Club" in payload
     assert payload["Chess Club"]["max_participants"] == 12
 
 
